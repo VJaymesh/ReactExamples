@@ -1,0 +1,77 @@
+// Note : I have included HTML, ReactJS and CSS code.(jsfiddle)
+
+HTML:
+<script src="https://facebook.github.io/react/js/jsfiddle-integration.js"></script>
+<div id="container">
+    <!-- This element's contents will be replaced with your component. -->
+</div>
+
+ReactJS:
+
+			class MyButton extends React.Component {
+        render(){
+            return <input type="button"  {...this.props} 
+            className ={this.props.className} value={ this.props.name}  />
+        }
+      }
+
+			class Label extends React.Component {
+        render() {
+           console.log(this)
+            return <p > Hello World 
+            <span {...this.props} className={this.props.myClassName}> 
+            			{ this.props.name } </span>
+            </p>;
+        }
+      }
+
+    	class HelloWidget extends React.Component{
+        	constructor() {
+          	super();
+            this.state = { name: '', className:''};
+            this.handler = this.handler.bind(this);
+	       }
+         handler(e){
+           this.setState({ name : e.target.value, 
+           								className : e.target.className
+            });
+         }  
+  	      render() {
+    	       return <div className="widget">
+      	          <MyButton name="Add" className ="blue"  onClick={this.handler}/>
+                  <MyButton name="Modify" className ="orange" onClick={this.handler}/>
+                  <MyButton name="Delete" className ="red" onClick={this.handler}/>
+        	        <Label myClassName ={ this.state.className} name={ this.state.name }/> </div>
+        	}
+      }
+
+      React.render(<HelloWidget />, document.getElementById('container'));
+
+CSS:
+input.blue{
+   background-color:blue; 
+}
+input.orange{
+   background-color:orange; 
+}
+input.red{
+   background-color:red; 
+}
+
+.widget {
+    width: 202px;
+    margin:100px auto;
+//    border:1px solid black;
+    padding:20px;
+}
+
+span.blue {
+    color: blue;
+}
+span.red {
+    color: red;
+}
+span.orange {
+    color: orange;
+}
+
