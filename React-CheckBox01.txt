@@ -1,0 +1,39 @@
+class CheckUniquebox extends React.Component {
+    render() {return <input type="checkbox" {...this.props} checked ={this.props.ticked}/>
+             }
+}
+
+class Label extends React.Component{
+   render(){
+     return <p {...this.props}>you have<span>{ this.props.value } </span> </p>
+   }
+}
+
+class MainContainer extends React.Component{
+   constructor(){
+     super();
+     this.state={ cb1:{ticked :false, value:''},
+                  cb2:{ticked :false, value:''}
+                  } 
+   }
+   
+    this.interested = [ 'cricket', 'football' ];
+   
+   handler(e){
+     if(e.target.value == "cricket"){
+     		 return this.setState({ ticked : true, value: "cricket"} );
+     } else{ 
+         return this.setState( { ticked : true, value: "football"} );
+        }
+  }
+  
+   render(){
+     return (<div> 
+               <CheckUniquebox checked = {this.state.cb1.ticked} value={this.interested.cb1.value} onChange={this.handler}/>
+               <CheckUniquebox checked = {this.state.cb2.ticked} value={this.state.cb2.value} onChange={this.handler}/>
+               <Label name={this.state.value}/>
+            </div>)
+   }
+}
+
+React.render(<MainContainer/>, document.getElementById('container'));
