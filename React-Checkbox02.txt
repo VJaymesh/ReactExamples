@@ -1,0 +1,39 @@
+class CheckUniquebox extends React.Component {
+    render() {return <input type="checkbox" {...this.props} checked ={this.props.ticked}/>
+             }
+}
+
+class Label extends React.Component{
+   render(){
+     return <p {...this.props}> you have<span> { this.props.name } </span> </p>
+   }
+}
+
+class MainContainer extends React.Component{
+   constructor(){
+     	super();
+      this.state = { ticked : false, value:'' } 
+      this.handler = this.handler.bind(this);
+      this.choice = ['Banana','Apple'];
+   }
+     
+  handler(e){
+     if(e.target.value === 'Banana'){
+       	this.setState( { ticked: checked , value: e.target.value });
+     }else if(e.target.value === 'Apple'){ 
+     		this.setState( { ticked: checked, value: e.target.value });
+     }else{
+     this.setState( { ticked: checked , value: 'sorry' });
+     }
+  }
+  
+   render(){
+     return (<div> 
+               <CheckUniquebox value = {this.choice[0]} checked ={this.state.ticked} onChange={this.handler}/>
+               <CheckUniquebox value = {this.choice[1]} checked ={this.state.ticked} onChange={this.handler}/>
+               <Label name = {this.state.value}/>
+            </div>)
+   }
+}
+
+React.render(<MainContainer/>, document.getElementById('container'));
